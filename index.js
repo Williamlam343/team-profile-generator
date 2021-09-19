@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern")
 const Manager = require("./lib/Manager")
 const inquirer = require("inquirer")
 const buildCard = require("./lib/generatehtml")
+const generatehtml = require("./lib/generatehtml")
 const fs = require('fs');
 let employeeList = []
 // THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
@@ -106,7 +107,7 @@ function buildTeam(choice) {
             inquirer.prompt(engineerQuestions).then((res) => {
                 // create a new Engineer obj 
                 let employee = new Engineer(res.name, res.id, res.email, res.github)
-                // add into employee [{}]
+                // add into employeeList []
                 employeeList.push(employee)
                 console.log(employeeList)
                 inquirer.prompt(buildTeamQuestions)
@@ -122,7 +123,7 @@ function buildTeam(choice) {
             inquirer.prompt(internQuestions).then((res) => {
                 // create a new Intern obj
                 let employee = new Intern(res.name, res.id, res.email, res.school)
-                // add into employee [{}]
+                // add into employeeList []
                 employeeList.push(employee)
                 console.log(employeeList)
                 // brings manager back to menu
@@ -133,26 +134,27 @@ function buildTeam(choice) {
             break;
 
         default:
-            buildTeam(employeeList)
             // WHEN I decide to finish building my team
             // THEN I exit the application, and the HTML is generated
-
-            break; cd
+            console.log(`Team builder completed!\n`)
+            console.log("=============================================")
+            buildCard(employeeList)
     }
+
 }
 
-
+// TODO build a writefile function that returns generateHTML
 
 function init() {
     inquirer
         .prompt(managerQuestions)
         .then((resp) => {
-            console.log(resp, `Welcome ${resp.name}!\n`);
+            console.log("=============================================")
+            console.log(`Welcome ${resp.name}!\n`);
             // create a new Manager obj 
             let employee = new Manager(resp.name, resp.id, resp.email, resp.officeNumber)
             // add into employee [{}]
             employeeList.push(employee)
-            console.log(employeeList)
             inquirer.prompt(buildTeamQuestions).then((choice) => {
                 buildTeam(choice.menu)
             })
