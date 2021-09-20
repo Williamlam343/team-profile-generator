@@ -3,7 +3,6 @@ const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 const Manager = require("./lib/Manager")
 const inquirer = require("inquirer")
-const buildCard = require("./lib/generatehtml")
 const generatehtml = require("./lib/generatehtml")
 const fs = require('fs');
 let employeeList = []
@@ -138,12 +137,20 @@ function buildTeam(choice) {
             // THEN I exit the application, and the HTML is generated
             console.log(`Team builder completed!\n`)
             console.log("=============================================")
-            buildCard(employeeList)
+            writeToFile("./dist/profileBuilder.html", generatehtml(employeeList))
+
     }
 
 }
 
 // TODO build a writefile function that returns generateHTML
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) =>
+        err ? console.log(err) : console.log('HTML generated')
+    );
+}
+
 
 function init() {
     inquirer
