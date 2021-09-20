@@ -29,9 +29,7 @@ const managerQuestions = [
         name: 'email',
         message: 'Enter email address:',
         validate: function (email) {
-
             valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
             if (valid) {
                 return true;
             } else {
@@ -60,7 +58,7 @@ const internQuestions = [
         message: 'Enter intern name:',
     },
     {
-        type: 'input',
+        type: 'number',
         name: 'id',
         message: 'Enter intern ID:',
         validate(value) {
@@ -77,7 +75,6 @@ const internQuestions = [
         validate: function (email) {
             valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
             if (valid) {
-                console.log("Great job");
                 return true;
             } else {
                 console.log(".  Please enter a valid email")
@@ -99,7 +96,7 @@ const engineerQuestions = [
         message: 'Enter engineer name:',
     },
     {
-        type: 'input',
+        type: 'number',
         name: 'id',
         message: 'Enter engineer ID:',
         validate(value) {
@@ -114,11 +111,8 @@ const engineerQuestions = [
         name: 'email',
         message: 'Enter engineer email:',
         validate: function (email) {
-
             valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
             if (valid) {
-                console.log("Great job");
                 return true;
             } else {
                 console.log(".  Please enter a valid email")
