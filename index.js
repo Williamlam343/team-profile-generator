@@ -33,11 +33,10 @@ const managerQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log(".  Please enter a valid email")
+                console.log("Please enter a valid email")
                 return false;
             }
         }
-
     },
     {
         type: 'number',
@@ -77,7 +76,7 @@ const internQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log(".  Please enter a valid email")
+                console.log("Please enter a valid email")
                 return false;
             }
         }
@@ -115,7 +114,7 @@ const engineerQuestions = [
             if (valid) {
                 return true;
             } else {
-                console.log(".  Please enter a valid email")
+                console.log("Please enter a valid email")
                 return false;
             }
         }
@@ -135,6 +134,7 @@ const buildTeamQuestions = [
         message: 'What would you like to do?',
     },
 ]
+
 function buildTeam(choice) {
     switch (choice) {
         // WHEN I select the engineer option
@@ -198,7 +198,7 @@ function init() {
             console.log(`Welcome ${resp.name.capitalize()}!\n`);
             // create a new Manager obj 
             let employee = new Manager(resp.name.capitalize(), resp.id, resp.email, resp.officeNumber)
-            // add into employee [{}]
+            // add into employee []
             employeeList.push(employee)
             inquirer.prompt(buildTeamQuestions).then((choice) => {
                 buildTeam(choice.menu)
