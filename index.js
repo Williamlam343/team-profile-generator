@@ -85,9 +85,7 @@ const engineerQuestions = [
         name: 'github',
         message: 'Enter engineer github:',
     },
-
 ]
-
 // THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 const buildTeamQuestions = [
     {
@@ -97,7 +95,6 @@ const buildTeamQuestions = [
         message: 'What would you like to do?',
     },
 ]
-
 function buildTeam(choice) {
     switch (choice) {
         // WHEN I select the engineer option
@@ -131,20 +128,17 @@ function buildTeam(choice) {
                 })
             })
             break;
-
         default:
             // WHEN I decide to finish building my team
             // THEN I exit the application, and the HTML is generated
             console.log(`Team builder completed!\n`)
             console.log("=============================================")
             writeToFile("./dist/profileBuilder.html", generatehtml(employeeList))
-
     }
-
 }
 
-// TODO build a writefile function that returns generateHTML
 
+// function to generate the HTML
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
         err ? console.log(err) : console.log('HTML generated')
