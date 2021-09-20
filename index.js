@@ -75,9 +75,7 @@ const internQuestions = [
         name: 'email',
         message: 'Enter intern email:',
         validate: function (email) {
-
             valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
             if (valid) {
                 console.log("Great job");
                 return true;
@@ -150,7 +148,7 @@ function buildTeam(choice) {
         case "Add an Engineer":
             inquirer.prompt(engineerQuestions).then((res) => {
                 // create a new Engineer obj 
-                let employee = new Engineer(res.name, res.id, res.email, res.github)
+                let employee = new Engineer(res.name.capitalize(), res.id, res.email, res.github)
                 // add into employeeList []
                 employeeList.push(employee)
                 console.log(employeeList)
@@ -166,7 +164,7 @@ function buildTeam(choice) {
         case "Add an Intern":
             inquirer.prompt(internQuestions).then((res) => {
                 // create a new Intern obj
-                let employee = new Intern(res.name, res.id, res.email, res.school)
+                let employee = new Intern(res.name.capitalize(), res.id, res.email, res.school)
                 // add into employeeList []
                 employeeList.push(employee)
                 console.log(employeeList)
@@ -193,15 +191,19 @@ function writeToFile(fileName, data) {
     );
 }
 
+// helper to capitalize 1st letter of a string
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1)
+}
 
 function init() {
     inquirer
         .prompt(managerQuestions)
         .then((resp) => {
             console.log("=============================================")
-            console.log(`Welcome ${resp.name}!\n`);
+            console.log(`Welcome ${resp.name.capitalize()}!\n`);
             // create a new Manager obj 
-            let employee = new Manager(resp.name, resp.id, resp.email, resp.officeNumber)
+            let employee = new Manager(resp.name.capitalize(), resp.id, resp.email, resp.officeNumber)
             // add into employee [{}]
             employeeList.push(employee)
             inquirer.prompt(buildTeamQuestions).then((choice) => {
@@ -214,5 +216,3 @@ function init() {
 
 init()
 
-// const tucker = new Intern("Tucker", 1, "@gmail", 101)
-// console.log(tucker.getRole())
